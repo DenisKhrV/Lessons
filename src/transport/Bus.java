@@ -1,9 +1,11 @@
 package transport;
 
-public class Bus extends Transport{
+import driver.DriverD;
 
-    public Bus(String mark, String model, int year, String country, String color, int maxSpeed) {
-        super(mark, model, year, country, color, maxSpeed);
+public class Bus extends Transport<DriverD> implements Competitive{
+
+    public Bus(String mark, String model, double engineCapacity) {
+        super(mark, model, engineCapacity);
     }
 
     @Override
@@ -11,11 +13,22 @@ public class Bus extends Transport{
         return  "Transport{" +
                 "mark='" + super.getMark() + '\'' +
                 ", model='" + super.getModel() + '\'' +
-                ", year=" + super.getYear() +
-                ", country='" + super.getCountry() + '\'' +
-                ", color='" + super.getColor() + '\'' +
-                ", maxSpeed=" + super.getMaxSpeed() +
                 '}'+
                 "Bus{}";
+    }
+
+    @Override
+    public void pitStop() {
+        System.out.println("Заезд на питстоп");
+    }
+
+    @Override
+    public void bestLap() {
+        System.out.println("Лучшее время круга");
+    }
+
+    @Override
+    public void maxSpeed() {
+        System.out.println("Максимальная скорость");
     }
 }

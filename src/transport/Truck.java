@@ -2,10 +2,8 @@ package transport;
 
 import driver.Driver;
 
-public class Car<driverB> extends Transport<Driver> implements Competitive {
-
-
-    public Car(String mark, String model, double engineCapacity) {
+public class Truck<driverC> extends Transport<Driver> implements Competitive{
+    public Truck(String mark, String model, double engineCapacity) {
         super(mark, model, engineCapacity);
     }
 
@@ -15,7 +13,7 @@ public class Car<driverB> extends Transport<Driver> implements Competitive {
                 "mark='" + super.getMark() + '\'' +
                 ", model='" + super.getModel() + '\'' +
                 '}'+
-                "Car{}";
+                "Truck{}";
     }
 
     @Override

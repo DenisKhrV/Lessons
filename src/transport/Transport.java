@@ -1,21 +1,28 @@
 package transport;
 
-public class Transport {
+import driver.Driver;
+
+abstract public class Transport<D extends Driver> {
     private final String mark;
     private final String model;
-    private final int year;
-    private final String country;
-    private String color;
-    private int maxSpeed;
+    private final double engineCapacity;
+    private D driver;
 
-    public Transport(String mark, String model, int year, String country, String color, int maxSpeed) {
+    public Transport(String mark, String model, double engineCapacity) {
         this.mark = mark;
         this.model = model;
-        this.year = year;
-        this.country = country;
-        this.color = color;
-        this.maxSpeed = maxSpeed;
+        this.engineCapacity = engineCapacity;
     }
+
+    public void startMoving() {
+        System.out.println("Автомобиль начал движение");
+
+    }
+
+    public void endMoving() {
+        System.out.println("Автомобиль закончил движение");
+    }
+
 
     public String getMark() {
         return mark;
@@ -25,31 +32,12 @@ public class Transport {
         return model;
     }
 
-    public int getYear() {
-        return year;
+    public double getEngineCapacity() {
+        return engineCapacity;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setColor(String color) {
-        if (color != null && !color.isEmpty())
-            this.color = color;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        if (maxSpeed > 0) {
-            this.maxSpeed = maxSpeed;
-        }
+    public D getDriver() {
+        return driver;
     }
 
     @Override
@@ -57,10 +45,7 @@ public class Transport {
         return "Transport{" +
                 "mark='" + mark + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
-                ", color='" + color + '\'' +
-                ", maxSpeed=" + maxSpeed +
+                ", engineCapacity=" + engineCapacity +
                 '}';
     }
 }
