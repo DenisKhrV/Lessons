@@ -1,14 +1,32 @@
 package transport;
 
 import driver.DriverD;
+import exceptions.DiagnosticNotAllowedException;
+import interfaces.Competitive;
+import interfaces.Diagnosticable;
 
-public class Bus extends Transport<DriverD> implements Competitive {
+import java.util.Random;
+
+public class Bus extends Transport<DriverD> implements Competitive, Diagnosticable {
 
     Capacity capacity;
 
     public Bus(Type type, String mark, String model, double engineCapacity, DriverD driver, Capacity capacity) {
         super(type, mark, model, engineCapacity, driver);
         this.capacity = capacity;
+        this.setGasTankBar(100);
+        this.setOilTankBar(15);
+    }
+
+    @Override
+    public void runDiagnostic() throws DiagnosticNotAllowedException {
+        Random random = new Random();
+        int randomNumber = random.nextInt(10);
+        if (randomNumber == 0) {
+            throw new DiagnosticNotAllowedException("Диагностика не пройдена");
+        } else {
+            System.out.println("Диагностика успешно пройдена");
+        }
     }
 
     public enum Capacity {
@@ -41,8 +59,8 @@ public class Bus extends Transport<DriverD> implements Competitive {
 
 
     @Override
-    public void printType() {
-        System.out.println(Type.BUS.getType() + ". " + capacity.toString());
+    public String printType() {
+        return Type.BUS.getType() + ". " + capacity.toString();
     }
 
     @Override

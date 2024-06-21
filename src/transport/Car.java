@@ -2,13 +2,18 @@ package transport;
 
 import driver.Driver;
 import driver.DriverB;
+import exceptions.DiagnosticNotAllowedException;
+import interfaces.Competitive;
+import interfaces.Diagnosticable;
 
-public class Car extends Transport<Driver> implements Competitive {
+public class Car extends Transport<Driver> implements Competitive, Diagnosticable {
 
 
     public Car(Type type, String mark, String model, double engineCapacity, DriverB driver, BodyType bodyType) {
         super(type, mark, model, engineCapacity, driver);
         this.bodyType = bodyType;
+        this.setGasTankBar(50);
+        this.setOilTankBar(8);
     }
 
     public Car(Type type, String mark, String model, double engineCapacity, Driver driver) {
@@ -16,6 +21,11 @@ public class Car extends Transport<Driver> implements Competitive {
     }
 
     BodyType bodyType;
+
+    @Override
+    public void runDiagnostic() throws DiagnosticNotAllowedException {
+        System.out.println("Диагностика успешно пройдена");
+    }
 
     public enum BodyType {
         a("Седан"),
@@ -46,11 +56,11 @@ public class Car extends Transport<Driver> implements Competitive {
 
 
     @Override
-    public void printType() {
+    public String printType() {
         if (bodyType != null) {
-            System.out.println(Type.CAR.getType() + ". " + bodyType.translate);
+            return Type.CAR.getType() + ", " + bodyType.translate;
         } else {
-            System.out.println("Недостаточно данных");
+            return "Недостаточно данных";
         }
     }
 
@@ -66,6 +76,7 @@ public class Car extends Transport<Driver> implements Competitive {
     @Override
     public void pitStop() {
         System.out.println("Заезд на питстоп");
+        setGasTankBar(50);
     }
 
     @Override

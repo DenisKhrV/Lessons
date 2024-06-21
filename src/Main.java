@@ -1,6 +1,7 @@
 import driver.DriverB;
 import driver.DriverC;
 import driver.DriverD;
+import exceptions.DiagnosticNotAllowedException;
 import transport.*;
 
 import static transport.Bus.Capacity.*;
@@ -9,7 +10,7 @@ import static transport.Truck.LiftingCapacity.*;
 import static transport.Type.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DiagnosticNotAllowedException {
         DriverB driver1 = new DriverB("Вася", true, 11);
         DriverB driver2 = new DriverB("Петя", true, 14);
         DriverC driver3 = new DriverC("Гриша", true, 12);
@@ -48,10 +49,17 @@ public class Main {
         System.out.println(bus2.getType());
         System.out.println(truck1.getType());
 
-        truck1.printType();
-        car1.printType();
-        bus1.printType();
-        car3.printType();
+        System.out.println(truck1.printType());
+        System.out.println(car1.printType());
+        System.out.println(bus1.printType());
+        System.out.println(car3.printType());
+
+        car1.startMoving2();
+        truck1.startMoving2();
+
+        for (Transport transport : transports) {
+            transport.runDiagnostic2();
+        }
 
     }
 

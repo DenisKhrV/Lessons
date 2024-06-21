@@ -2,14 +2,24 @@ package transport;
 
 import driver.Driver;
 import driver.DriverC;
+import exceptions.DiagnosticNotAllowedException;
+import interfaces.Competitive;
+import interfaces.Diagnosticable;
 
-public class Truck extends Transport<Driver> implements Competitive {
+public class Truck extends Transport<Driver> implements Competitive, Diagnosticable {
     public Truck(Type type, String mark, String model, double engineCapacity, DriverC driver, LiftingCapacity liftingCapacity) {
         super(type, mark, model, engineCapacity, driver);
         this.liftingCapacity = liftingCapacity;
+        this.setGasTankBar(200);
+        this.setOilTankBar(20);
     }
 
     LiftingCapacity liftingCapacity;
+
+    @Override
+    public void runDiagnostic() throws DiagnosticNotAllowedException {
+        System.out.println("Диагностика успешно пройдена");
+    }
 
     public enum LiftingCapacity {
         N1(null, 3.5),
@@ -53,8 +63,8 @@ public class Truck extends Transport<Driver> implements Competitive {
 
 
     @Override
-    public void printType() {
-        System.out.println(Type.TRUCK.getType() + " " + liftingCapacity.toString());
+    public String printType() {
+        return Type.TRUCK.getType() + " " + liftingCapacity.toString();
     }
 
     @Override
