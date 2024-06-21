@@ -7,12 +7,14 @@ abstract public class Transport<T extends Driver> {
     private final String model;
     private final double engineCapacity;
     private final T driver;
+    private final Type type;
 
-    public Transport(String mark, String model, double engineCapacity, T driver) {
+    public Transport(Type type, String mark, String model, double engineCapacity, T driver) {
         this.mark = mark;
         this.model = model;
         this.engineCapacity = engineCapacity;
         this.driver = driver;
+        this.type = type;
     }
 
     public void startMoving() {
@@ -24,6 +26,11 @@ abstract public class Transport<T extends Driver> {
         System.out.println("Автомобиль закончил движение");
     }
 
+    abstract public void printType();
+
+    public Type getType() {
+        return type;
+    }
 
     public String getMark() {
         return mark;

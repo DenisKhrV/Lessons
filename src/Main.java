@@ -1,10 +1,12 @@
 import driver.DriverB;
 import driver.DriverC;
 import driver.DriverD;
-import transport.Bus;
-import transport.Car;
-import transport.Transport;
-import transport.Truck;
+import transport.*;
+
+import static transport.Bus.Capacity.*;
+import static transport.Car.BodyType.*;
+import static transport.Truck.LiftingCapacity.*;
+import static transport.Type.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,12 +17,13 @@ public class Main {
         DriverD driver5 = new DriverD("Денис", true, 11);
         DriverD driver6 = new DriverD("Владимир", true, 13);
 
-        Car car1 = new Car("Toyota", "Prius", 1500, driver1);
-        Car car2 = new Car("Nissan", "Skyline", 3000, driver2);
-        Bus bus1 = new Bus("Nissan", "Vanette", 2010, driver5);
-        Bus bus2 = new Bus("Mazda", "Bongo", 2009, driver6);
-        Truck truck1 = new Truck("MAN", "TR11", 5000, driver3);
-        Truck truck2 = new Truck("MAN", "RK22", 6000, driver4);
+        Car car1 = new Car(CAR,"Toyota", "Prius", 1500, driver1, a);
+        Car car2 = new Car(CAR,"Nissan", "Skyline", 3000, driver2, b);
+        Car car3 = new Car(CAR,"Nissan", "Skyline", 3000, driver2);
+        Truck truck1 = new Truck(TRUCK,"MAN", "TR11", 5000, driver3, N1);
+        Truck truck2 = new Truck(TRUCK,"MAN", "RK22", 6000, driver4, N2);
+        Bus bus1 = new Bus(BUS,"Nissan", "Vanette", 2010, driver5, SMALL);
+        Bus bus2 = new Bus(BUS,"Mazda", "Bongo", 2009, driver6, BIG);
 
         Transport<?>[] transports = new Transport[6];
         transports[0] = car1;
@@ -33,6 +36,22 @@ public class Main {
         for (Transport<?> transport : transports) {
             printInfo(transport);
         }
+
+        System.out.println(car1.getBodyType());
+        System.out.println(car2.getBodyType());
+        System.out.println(truck1.getLiftingCapacity());
+        System.out.println(truck2.getLiftingCapacity());
+        System.out.println(bus1.getCapacity());
+        System.out.println(bus2.getCapacity());
+
+        System.out.println(car1.getType());
+        System.out.println(bus2.getType());
+        System.out.println(truck1.getType());
+
+        truck1.printType();
+        car1.printType();
+        bus1.printType();
+        car3.printType();
 
     }
 
