@@ -1,10 +1,11 @@
 package transport;
 
 import driver.Driver;
+import driver.DriverC;
 
-public class Truck<driverC> extends Transport<Driver> implements Competitive{
-    public Truck(String mark, String model, double engineCapacity) {
-        super(mark, model, engineCapacity);
+public class Truck extends Transport<Driver> implements Competitive{
+    public Truck(String mark, String model, double engineCapacity, DriverC driver) {
+        super(mark, model, engineCapacity, driver);
     }
 
     @Override

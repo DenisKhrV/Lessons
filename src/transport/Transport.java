@@ -2,16 +2,17 @@ package transport;
 
 import driver.Driver;
 
-abstract public class Transport<D extends Driver> {
+abstract public class Transport<T extends Driver> {
     private final String mark;
     private final String model;
     private final double engineCapacity;
-    private D driver;
+    private final T driver;
 
-    public Transport(String mark, String model, double engineCapacity) {
+    public Transport(String mark, String model, double engineCapacity, T driver) {
         this.mark = mark;
         this.model = model;
         this.engineCapacity = engineCapacity;
+        this.driver = driver;
     }
 
     public void startMoving() {
@@ -36,7 +37,7 @@ abstract public class Transport<D extends Driver> {
         return engineCapacity;
     }
 
-    public D getDriver() {
+    public T getDriver() {
         return driver;
     }
 

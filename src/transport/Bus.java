@@ -4,9 +4,10 @@ import driver.DriverD;
 
 public class Bus extends Transport<DriverD> implements Competitive{
 
-    public Bus(String mark, String model, double engineCapacity) {
-        super(mark, model, engineCapacity);
+    public Bus(String mark, String model, double engineCapacity, DriverD driver) {
+        super(mark, model, engineCapacity, driver);
     }
+
 
     @Override
     public String toString() {
