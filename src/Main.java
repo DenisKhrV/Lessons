@@ -57,8 +57,8 @@ public class Main {
         car1.startMoving2();
         truck1.startMoving2();
 
-        for (Transport transport : transports) {
-            transport.runDiagnostic2();
+        for (Transport<?> transport : transports) {
+            transport.runDiagnostic();
         }
 
     }

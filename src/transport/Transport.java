@@ -78,15 +78,7 @@ abstract public class Transport<T extends Driver> implements Diagnosticable {
         System.out.println("Автомобиль закончил движение");
     }
 
-    public void runDiagnostic2() throws DiagnosticNotAllowedException {
-        try {
-            this.runDiagnostic();
-
-        } catch (DiagnosticNotAllowedException e) {
-            e.printStackTrace();
-        }finally {
-            System.out.println("Диагностика завершена");
-        }
+    public void runDiagnostic() throws DiagnosticNotAllowedException {
     }
 
     abstract public String printType();
