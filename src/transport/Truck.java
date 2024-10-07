@@ -5,10 +5,13 @@ import driver.DriverC;
 import exceptions.DiagnosticNotAllowedException;
 import interfaces.Competitive;
 import interfaces.Diagnosticable;
+import mechanic.Mechanic;
+
+import java.util.List;
 
 public class Truck extends Transport<Driver> implements Competitive, Diagnosticable {
-    public Truck(Type type, String mark, String model, double engineCapacity, DriverC driver, LiftingCapacity liftingCapacity) {
-        super(type, mark, model, engineCapacity, driver);
+    public Truck(Type type, String mark, String model, double engineCapacity, DriverC driver, LiftingCapacity liftingCapacity, List<Mechanic> mechanics) {
+        super(type, mark, model, engineCapacity, driver, mechanics);
         this.liftingCapacity = liftingCapacity;
         this.setGasTankBar(200);
         this.setOilTankBar(20);

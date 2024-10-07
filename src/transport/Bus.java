@@ -4,15 +4,17 @@ import driver.DriverD;
 import exceptions.DiagnosticNotAllowedException;
 import interfaces.Competitive;
 import interfaces.Diagnosticable;
+import mechanic.Mechanic;
 
+import java.util.List;
 import java.util.Random;
 
 public class Bus extends Transport<DriverD> implements Competitive, Diagnosticable {
 
     Capacity capacity;
 
-    public Bus(Type type, String mark, String model, double engineCapacity, DriverD driver, Capacity capacity) {
-        super(type, mark, model, engineCapacity, driver);
+    public Bus(Type type, String mark, String model, double engineCapacity, DriverD driver, Capacity capacity, List<Mechanic> mechanics) {
+        super(type, mark, model, engineCapacity, driver, mechanics);
         this.capacity = capacity;
         this.setGasTankBar(100);
         this.setOilTankBar(15);

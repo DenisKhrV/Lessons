@@ -1,9 +1,10 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class QueueExample {
     public static void main(String[] args) {
-        Queue<String> queue = new LinkedList<>();
+        LinkedList<String> queue = new LinkedList<>();
         // В этой строке создается экземпляр класса LinkedList,
         // который имплементирует интерфейс Queue.
         // После этого мы можем использовать методы интерфейса Queue
@@ -23,10 +24,22 @@ public class QueueExample {
         // Метод peek возвращает головной элемент без удаления.
         // В данном примере мы удаляем первый элемент из очереди
         // и выводим на экран головной элемент при помощи метода peek.
-        String headElement = queue.remove();
-        System.out.println("Удаленный элемент: " + headElement);
-        String headElement2 = queue.remove();
-        System.out.println("Удаленный элемент: " + headElement2);
+//        String headElement = queue.remove();
+//        System.out.println("Удаленный элемент: " + headElement);
+//        String headElement2 = queue.remove();
+//        System.out.println("Удаленный элемент: " + headElement2);
+//        String headElement3 = queue.remove();
+//        System.out.println("Удаленный элемент: " + headElement3);
+//        for (String s : queue) {
+//            s = queue.remove(); //ConcurrentModificationException
+//            System.out.println(s);
+        Iterator<String> iterator = queue.iterator();
+        while (iterator.hasNext()) {
+            String s = iterator.next();
+            System.out.println(s);
+            iterator.remove();
+        }
+//        queue.removeIf(element -> iDontLikeThisElement(element));
 
 
         // Метод contains проверяет наличие элемента в очереди.

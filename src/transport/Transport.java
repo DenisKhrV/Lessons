@@ -6,6 +6,10 @@ import exceptions.EmptyException;
 import exceptions.EmptyGasTankException;
 import exceptions.NoOilException;
 import interfaces.Diagnosticable;
+import mechanic.Mechanic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 abstract public class Transport<T extends Driver> implements Diagnosticable {
     private final String mark;
@@ -15,13 +19,15 @@ abstract public class Transport<T extends Driver> implements Diagnosticable {
     private final Type type;
     private int gasTankBar;
     private int oilTankBar;
+    List<Mechanic> mechanics = new ArrayList<>();
 
-    public Transport(Type type, String mark, String model, double engineCapacity, T driver) {
+    public Transport(Type type, String mark, String model, double engineCapacity, T driver, List<Mechanic> mechanics) {
         this.mark = mark;
         this.model = model;
         this.engineCapacity = engineCapacity;
         this.driver = driver;
         this.type = type;
+        this.mechanics = mechanics;
     }
 
     public int getGasTankBar() {
@@ -103,6 +109,17 @@ abstract public class Transport<T extends Driver> implements Diagnosticable {
         return driver;
     }
 
+    public List<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
+    public void checkTransport() {
+        if (this.getClass() != Bus.class) {
+            ServiceStation.addTransportToQueue(this);
+        } else {
+            System.out.println("ТО не требуется");
+        }
+    }
     @Override
     public String toString() {
         return "Transport{" +

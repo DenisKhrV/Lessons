@@ -5,19 +5,22 @@ import driver.DriverB;
 import exceptions.DiagnosticNotAllowedException;
 import interfaces.Competitive;
 import interfaces.Diagnosticable;
+import mechanic.Mechanic;
+
+import java.util.List;
 
 public class Car extends Transport<Driver> implements Competitive, Diagnosticable {
 
 
-    public Car(Type type, String mark, String model, double engineCapacity, DriverB driver, BodyType bodyType) {
-        super(type, mark, model, engineCapacity, driver);
+    public Car(Type type, String mark, String model, double engineCapacity, DriverB driver, BodyType bodyType, List<Mechanic> mechanics) {
+        super(type, mark, model, engineCapacity, driver, mechanics);
         this.bodyType = bodyType;
         this.setGasTankBar(50);
         this.setOilTankBar(8);
     }
 
-    public Car(Type type, String mark, String model, double engineCapacity, Driver driver) {
-        super(type, mark, model, engineCapacity, driver);
+    public Car(Type type, String mark, String model, double engineCapacity, Driver driver, List<Mechanic> mechanics) {
+        super(type, mark, model, engineCapacity, driver, mechanics);
     }
 
     BodyType bodyType;
